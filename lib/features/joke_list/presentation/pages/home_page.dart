@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:joke_app/presentation/bloc/joke_bloc.dart';
-import 'package:joke_app/presentation/bloc/joke_state.dart';
+
+import '../bloc/joke_bloc.dart';
+import '../bloc/joke_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,9 +28,12 @@ class _HomePageState extends State<HomePage> {
       body: BlocConsumer<JokeBloc, JokeState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return Center(
+          return Align(
+            alignment: Alignment.topCenter,
             child: !state.isError
                 ? ListView.builder(
+                    reverse: true,
+                    shrinkWrap: true,
                     itemCount: state.jokesList.length,
                     itemBuilder: (context, index) => ListTile(
                       title: Text(

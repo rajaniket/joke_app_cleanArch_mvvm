@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:joke_app/presentation/bloc/joke_bloc.dart';
-import 'package:joke_app/presentation/views/home_page.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'features/joke_list/presentation/bloc/joke_bloc.dart';
+import 'features/joke_list/presentation/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());

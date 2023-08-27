@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
-import 'package:joke_app/domain/models/joke_model.dart';
+
+import '../../data/models/joke_model.dart';
 
 class JokeState extends Equatable {
   final List<JokeModel> jokesList;
