@@ -12,7 +12,7 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
   Timer? timer;
   List<JokeEntity> jokesList = [];
   final JokeUsecase usecase;
-  Duration updateDuration = const Duration(seconds: 5);
+  Duration updateDuration = const Duration(seconds: 60);
 
   JokeBloc({required this.usecase}) : super(const JokeState(jokesList: [])) {
     on<JokeEvent>((event, emit) {});
