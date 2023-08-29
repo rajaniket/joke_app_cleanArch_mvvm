@@ -25,27 +25,27 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
     });
 
     on<FetchJoke>((event, emit) async {
-      await addJokes();
-      emit(
-        state.copyWith(jokesList: List.from(jokesList), isError: false),
-      );
+      // await addJokes();
+      // emit(
+      //   state.copyWith(jokesList: List.from(jokesList), isError: false),
+      // );
     });
   }
 
-  Future<JokeModel> getJoke() async {
-    try {
-      JokeModel joke = await JokeApiService().getJoke();
-      return joke;
-    } catch (e) {
-      return Future.error(e);
-    }
-  }
+  // Future<JokeModel> getJoke() async {
+  //   try {
+  //     // JokeModel joke = await JokeApiService().getJoke();
+  //     // return joke;
+  //   } catch (e) {
+  //     return Future.error(e);
+  //   }
+  // }
 
-  addJokes() async {
-    try {
-      JokeModel joke = await getJoke();
-      jokesList.add(joke);
-      if (jokesList.length > 10) jokesList.removeAt(0);
-    } catch (e) {}
-  }
+  // addJokes() async {
+  //   try {
+  //     JokeModel joke = await getJoke();
+  //     jokesList.add(joke);
+  //     if (jokesList.length > 10) jokesList.removeAt(0);
+  //   } catch (e) {}
+  // }
 }
