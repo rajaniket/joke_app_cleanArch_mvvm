@@ -20,7 +20,7 @@ class JokeUsecase implements JokeRepository {
   });
 
   @override
-  Future<DataState<List<JokeEntity>>> getJoke({required JokeParams params, bool intialCall = false}) async {
-    return await jokeRepository.getJoke(params: params);
+  Future<DataState<List<JokeEntity>>> getJoke({required JokeParams params, required bool intialCall}) async {
+    return await jokeRepository.getJoke(params: params, intialCall: intialCall);
   }
 }

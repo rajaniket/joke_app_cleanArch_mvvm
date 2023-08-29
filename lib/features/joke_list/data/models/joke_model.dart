@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
-import 'package:joke_app/features/joke_list/domain/entities/joke.dart';
-
 part 'joke_model.g.dart';
 
 @HiveType(typeId: 0)

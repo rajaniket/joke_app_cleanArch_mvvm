@@ -1,10 +1,9 @@
 // this will wrap entire network call in the app
 // There are two possible states of a network call ,Success or Fail
-import 'package:dio/dio.dart';
 
 abstract class DataState<T> {
   final T? data;
-  final DioException? error;
+  final String? error;
   const DataState({
     this.data,
     this.error,

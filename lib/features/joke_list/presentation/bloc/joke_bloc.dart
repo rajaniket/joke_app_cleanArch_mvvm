@@ -2,22 +2,26 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../data/models/joke_model.dart';
-import '../../data/repositories/joke_repository_impl.dart';
+import 'package:joke_app/core/resources/data_state.dart';
+import 'package:joke_app/features/joke_list/domain/entities/joke.dart';
+import 'package:joke_app/features/joke_list/domain/usecases/joke_usecase.dart';
 import 'joke_state.dart';
-
 part 'joke_event.dart';
 
 class JokeBloc extends Bloc<JokeEvent, JokeState> {
   Timer? timer;
-  List<JokeModel> jokesList = [];
+  List<JokeEntity> jokesList = [];
+  final JokeUsecase usecase;
+  Duration updateDuration = const Duration(seconds: 5);
 
-  JokeBloc() : super(const JokeState(jokesList: [])) {
+  JokeBloc({required this.usecase}) : super(const JokeState(jokesList: [])) {
     on<JokeEvent>((event, emit) {});
-    on<JokeInitialize>((event, emit) {
+    on<JokeInitialize>((event, emit) async {
+      emit(state.copyWith(jokesList: List.from(jokesList), isLoading: true));
+      await _addJokes(intialCall: true);
+      emit(state.copyWith(jokesList: List.from(jokesList), isLoading: false));
       timer = Timer.periodic(
-        const Duration(seconds: 5),
+        updateDuration,
         (timer) {
           add(FetchJoke());
         },
@@ -25,27 +29,17 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
     });
 
     on<FetchJoke>((event, emit) async {
-      // await addJokes();
-      // emit(
-      //   state.copyWith(jokesList: List.from(jokesList), isError: false),
-      // );
+      await _addJokes();
+      emit(
+        state.copyWith(jokesList: List.from(jokesList), isError: false),
+      );
     });
   }
 
-  // Future<JokeModel> getJoke() async {
-  //   try {
-  //     // JokeModel joke = await JokeApiService().getJoke();
-  //     // return joke;
-  //   } catch (e) {
-  //     return Future.error(e);
-  //   }
-  // }
-
-  // addJokes() async {
-  //   try {
-  //     JokeModel joke = await getJoke();
-  //     jokesList.add(joke);
-  //     if (jokesList.length > 10) jokesList.removeAt(0);
-  //   } catch (e) {}
-  // }
+  Future _addJokes({bool intialCall = false}) async {
+    final result = await usecase.getJoke(params: JokeParams(path: "/api?format=json"), intialCall: intialCall);
+    if (result is DataSuccess) {
+      jokesList = result.data!;
+    }
+  }
 }

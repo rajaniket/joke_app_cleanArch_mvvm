@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import '../../../../../core/error/exceptions.dart';
-import '../../../domain/usecases/joke_usecase.dart';
 import '../../models/joke_model.dart';
 import 'hive_helper.dart';
 
@@ -18,8 +16,12 @@ class JokeLocalDataSourceImpl implements JokeLocalDataSource {
 
   @override
   Future<List<JokeModel>> getJokes() async {
-    final jokes = await jokeHiveHelper.getJokes();
-    return jokes;
+    try {
+      final jokes = await jokeHiveHelper.getJokes();
+      return jokes;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -30,6 +32,5 @@ class JokeLocalDataSourceImpl implements JokeLocalDataSource {
   @override
   removeJoke() {
     jokeHiveHelper.removeJoke();
-    throw UnimplementedError();
   }
 }
