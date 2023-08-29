@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:hive/hive.dart';
 import 'package:joke_app/features/joke_list/data/models/joke_model.dart';
 import 'joke_local_datasource.dart';

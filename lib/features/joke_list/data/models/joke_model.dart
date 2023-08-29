@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+// ignore: depend_on_referenced_packages
 import 'package:hive/hive.dart';
 part 'joke_model.g.dart';
 
