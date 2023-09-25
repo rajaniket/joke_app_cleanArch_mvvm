@@ -1,16 +1,37 @@
-# joke_app
+# JokeKeeper - Clean Architecture
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+**JokeKeeper** is a mobile application that delivers a constant stream of geeky jokes to your device. It's built with a focus on clean architecture to ensure code quality and maintainability. Here's a quick rundown:
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Real-time Jokes**: JokeKeeper fetches a fresh joke every minute from an open API source.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Continuous Updates**: New jokes are automatically added to the list, ensuring you're always entertained.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Tidiness**: The app maintains a maximum of 10 jokes to keep things neat and manageable.
+
+- **Freshness**: As new jokes arrive, the oldest ones are gracefully replaced.
+
+- **Persistence**: Even if you close the app, JokeKeeper remembers old jokes, so you don't miss out on any laughs.
+
+## Preview
+
+https://github.com/rajaniket/joke_app_cleanArch_mvvm/assets/40004815/5699642b-4070-4ddb-96d3-6e7b28426d92
+
+## Development Approach
+
+JokeKeeper follows the principles of clean architecture, making it easy to maintain and scale. We've adopted the BLoC (Business Logic Component) pattern for efficient state management.
+
+## Tech Stack
+
+- **Programming Language**: Flutter
+- **State Management**: BLoC (Business Logic Component)
+
+## Local Data Storage
+
+We've implemented Hive for efficient local data storage. This ensures that you can access previously fetched jokes, even when you're offline.
+
+
+
