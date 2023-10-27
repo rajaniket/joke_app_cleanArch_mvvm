@@ -26,7 +26,7 @@ JokeKeeper follows the principles of clean architecture, making it easy to maint
 
 ## Tech Stack
 
-- **Programming Language**: Flutter
+- **Framework**: Flutter
 - **State Management**: BLoC (Business Logic Component)
 
 ## Local Data Storage
